@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MainTabBarController.h"
+#import "WSCommon.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    /**
+     *  设置启动页时间
+     */
+    [NSThread sleepForTimeInterval:1.0];
+    
+    /**
+     *  创建窗口
+     */
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    /**
+     *  绑定根视图
+     */
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    MainTabBarController *maintab = [sb instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+    self.window.rootViewController = maintab;
     return YES;
 }
 
